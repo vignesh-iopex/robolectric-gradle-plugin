@@ -12,8 +12,8 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'nexus'
 
-group = 'org.robolectric'
-version = '0.12.0'
+group = 'org.robolectric.custom'
+version = '0.13.0'
 
 dependencies {
     repositories {
