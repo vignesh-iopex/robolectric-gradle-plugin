@@ -1,10 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
+	jcenter()
     }
 
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.3'
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7'
     }
 }
 
@@ -12,7 +13,7 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'nexus'
 
-group = 'org.robolectric.custom'
+group = 'com.vikki.logs.robolectric'
 version = '0.13.0'
 
 dependencies {
@@ -45,13 +46,13 @@ modifyPom {
     project {
         name 'Robolectric Gradle Plugin'
         description "A Gradle plugin which enables Robolectric tests for Android."
-        url 'https://github.com/robolectric/robolectric-gradle-plugin'
+        url 'https://github.com/vignesh-iopex/robolectric-gradle-plugin'
         inceptionYear '2013'
 
         scm {
-            url 'https://github.com/robolectric/robolectric-gradle-plugin'
-            connection 'scm:git:git://github.com/robolectric/robolectric-gradle-plugin.git'
-            developerConnection 'scm:git:ssh://git@github.com/robolectric/robolectric-gradle-plugin.git'
+            url 'https://github.com/vignesh-iopex/robolectric-gradle-plugin'
+            connection 'scm:git:git://github.com/vignesh-iopex/robolectric-gradle-plugin.git'
+            developerConnection 'scm:git:ssh://git@github.com/vignesh-iopex/robolectric-gradle-plugin.git'
         }
 
         licenses {
@@ -69,21 +70,9 @@ modifyPom {
 
         developers {
             developer {
-                id 'mike'
-                name 'Mike Grafton'
-                email 'mike@pivotallabs.com'
-            }
-
-            developer {
-                id 'erich'
-                name 'Erich Douglass'
-                email 'erich@pivotallabs.com'
-            }
-
-            developer {
-                id 'terry'
-                name 'Terry Chen'
-                email 'terry@pivotallabs.com'
+                id 'vikki-logs'
+                name 'Vignesh Periasami'
+                email 'vikki.logs.@gmail.com'
             }
         }
     }
