@@ -43,6 +43,10 @@ class RobolectricPlugin implements Plugin<Project> {
                 log.debug("Skipping release build type.")
                 return;
             }
+	    if (extension.excludeVariants.contains(variant.buildType.name)) {
+	        log.debug("Skipping ${variant.buildType.name}")
+	        return;
+	    }
 
             // Get the build type name (e.g., "Debug", "Release").
             def buildTypeName = variant.buildType.name.capitalize()

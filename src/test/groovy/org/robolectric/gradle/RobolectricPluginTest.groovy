@@ -109,6 +109,19 @@ class RobolectricPluginTest {
         assertThat(project.tasks.testDebug.includes).contains("**/robo_tests/**").contains("**/robo_tests2/**")
     }
 
+    @Test(expected=org.gradle.api.UnknownTaskException)
+    public void supportMultipleExludeVariants() {
+        Project project = evaluatableProject()
+        project.android { buildTypes { dev {}; staging{} } }
+        project.robolectric { 
+    	    excludeVariant "staging"
+        }
+        project.evaluate()
+	assertThat(project.tasks.getByName("testDev")).isNotNull()
+
+        project.tasks.getByName("testStaging")
+    }
+
     @Test
     public void supportsIngoreFailures() {
         Project project = evaluatableProject()
@@ -140,7 +153,7 @@ class RobolectricPluginTest {
 
     private Project evaluatableProject() throws Exception {
         Project project = ProjectBuilder.builder().withProjectDir(new File("src/test/fixtures/android_app")).build();
-        project.apply plugin: 'android'
+        project.apply plugin: 'com.android.application'
         project.apply plugin: 'robolectric'
         project.android {
             compileSdkVersion 20
@@ -163,7 +176,7 @@ class RobolectricPluginTest {
             mavenCentral()
         }
 
-        project.apply plugin: 'android'
+        project.apply plugin: 'com.android.application'
         project.apply plugin: 'robolectric'
         project.android {
             compileSdkVersion 20
