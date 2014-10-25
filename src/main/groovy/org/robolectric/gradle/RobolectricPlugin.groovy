@@ -80,7 +80,7 @@ class RobolectricPlugin implements Plugin<Project> {
             testCompileClasspath.add robolectricTestConfig
 
             SourceSet variationSources = javaConvention.sourceSets.create "$TEST_TASK_NAME$variationName"
-            def testDestinationDir = project.files("$project.buildDir/$TEST_CLASSES_DIR")
+            def testDestinationDir = project.files("$project.buildDir/$TEST_CLASSES_DIR/$variant.dirName")
             def testRunClasspath = testCompileClasspath.plus testDestinationDir
 
             variationSources.java.setSrcDirs config.getSourceDirs("java", projectFlavorNames)

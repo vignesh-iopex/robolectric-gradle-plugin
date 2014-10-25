@@ -137,11 +137,12 @@ class RobolectricPluginTest {
         project.android { productFlavors { prod {}; beta {} } }
         project.evaluate()
 
-        def expectedDestination = project.files("$project.buildDir/test-classes").singleFile
-        assertThat(project.tasks.compileTestProdDebugJava.destinationDir).isEqualTo(expectedDestination)
-        assertThat(project.tasks.compileTestBetaDebugJava.destinationDir).isEqualTo(expectedDestination)
-        assertThat(project.tasks.processTestProdDebugResources.destinationDir).isEqualTo(expectedDestination)
-        assertThat(project.tasks.processTestBetaDebugResources.destinationDir).isEqualTo(expectedDestination)
+        def expectedDestinationProd = project.files("$project.buildDir/test-classes/prod/debug").singleFile
+        def expectedDestinationBeta = project.files("$project.buildDir/test-classes/beta/debug").singleFile
+        assertThat(project.tasks.compileTestProdDebugJava.destinationDir).isEqualTo(expectedDestinationProd)
+        assertThat(project.tasks.compileTestBetaDebugJava.destinationDir).isEqualTo(expectedDestinationBeta)
+        assertThat(project.tasks.processTestProdDebugResources.destinationDir).isEqualTo(expectedDestinationProd)
+        assertThat(project.tasks.processTestBetaDebugResources.destinationDir).isEqualTo(expectedDestinationBeta)
     }
 
     @Test

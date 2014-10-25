@@ -10,11 +10,6 @@ buildscript {
 }
 
 apply plugin: 'groovy'
-apply plugin: 'maven'
-apply plugin: 'nexus'
-
-group = 'com.vikki.logs.robolectric'
-version = '0.14.0'
 
 dependencies {
     repositories {
@@ -30,50 +25,4 @@ dependencies {
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
 }
 
-install {
-    repositories.mavenInstaller {
-        pom.artifactId = 'robolectric-gradle-plugin'
-    }
-}
-
-uploadArchives {
-    repositories.mavenDeployer {
-        pom.artifactId = 'robolectric-gradle-plugin'
-    }
-}
-
-modifyPom {
-    project {
-        name 'Robolectric Gradle Plugin'
-        description "A Gradle plugin which enables Robolectric tests for Android."
-        url 'https://github.com/vignesh-iopex/robolectric-gradle-plugin'
-        inceptionYear '2013'
-
-        scm {
-            url 'https://github.com/vignesh-iopex/robolectric-gradle-plugin'
-            connection 'scm:git:git://github.com/vignesh-iopex/robolectric-gradle-plugin.git'
-            developerConnection 'scm:git:ssh://git@github.com/vignesh-iopex/robolectric-gradle-plugin.git'
-        }
-
-        licenses {
-            license {
-                name 'The Apache Software License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                distribution 'repo'
-            }
-        }
-
-        organization {
-            name 'Robolectric'
-            url 'http://robolectric.org'
-        }
-
-        developers {
-            developer {
-                id 'vikki-logs'
-                name 'Vignesh Periasami'
-                email 'vikki.logs.@gmail.com'
-            }
-        }
-    }
-}
+apply from: 'mvn-push.gradle'
